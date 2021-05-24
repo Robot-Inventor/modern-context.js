@@ -1,0 +1,150 @@
+# ModernContext.js
+
+[English](README.md)
+
+Fluent Designに影響を受けた、モダンで美しく軽量なJavaScriptのコンテキストメニューのライブラリーです。
+
+![screenshot](screenshot_light.png)
+
+## ダークモードをサポート
+
+ModernContext.jsはダークモードをサポートしています。ブラウザーがダークモードに設定されている場合、コンテキストメニューは自動で黒を基調としたデザインに切り替わります。
+
+![screenshot](screenshot_dark.png)
+
+## サポートしているブラウザー
+
+次のブラウザーがサポートされています。ModernContext.jsは他のモダンブラウザーでも動作するかもしれませんが、リストにあるブラウザーでのみテストしています。
+
+- Google Chrome
+- Firefox
+- Microsoft Edge
+
+注意：Firefoxは現在、CSSの``backdrop-filter``プロパティーをサポートしていないため、コンテキストメニューの背景のブラーエフェクトはFirefoxでは動作しません。
+
+## 使い方
+
+```javascript
+const context = new Context("#target");
+
+context.add_item("Alert", () => {
+    alert("Clicked!")
+});
+context.add_separator();
+context.add_item("No Callback");
+```
+
+次のコードでも同じように動作します。
+
+```javascript
+const context = new Context("#target");
+
+const contents = [
+    {
+        type: "item",
+        label: "Alert",
+        callback: () => {
+            alert("Clicked!");
+        }
+    },
+    {
+        type: "separator"
+    },
+    {
+        type: "item",
+        label: "No Callback"
+    },
+];
+
+context.add_contents(contents);
+```
+
+また、次のように書くこともできます。
+
+```javascript
+const contents = [
+    {
+        type: "item",
+        label: "Alert",
+        callback: () => {
+            alert("Clicked!");
+        }
+    },
+    {
+        type: "separator"
+    },
+    {
+        type: "item",
+        label: "No Callback"
+    },
+];
+
+const context = new Context("#target", contents);
+```
+
+### 引数
+
+#### Context()
+
+|名前|引数の型|デフォルト|説明|
+|--:|--:|--:|--:|
+|target_selector|String|N/A|ターゲットとする要素のCSSセレクター|
+|contents|Array Of Object|[ ]|コンテキストメニューの内容。この引数は省略可能です。詳細は``add_contents()``を参照|
+
+#### add_item()
+
+コンテキストメニューにアイテムを追加します。
+
+|名前|引数の型|デフォルト|説明|
+|--:|--:|--:|--:|
+|label|String|N/A|アイテムのラベル|
+|callback|Function|() => {}|ユーザーがアイテムを選択したとき、この関数が呼び出されます|
+
+#### add_separator()
+
+コンテキストメニューにセパレーターを追加します。引数はありません。
+
+#### add_contents()
+
+コンテキストメニューにアイテムやセパレーターを追加します。
+
+|名前|引数の型|デフォルト|説明|
+|--:|--:|--:|--:|
+|contents|Array of Object|N/A|コンテキストメニューに追加する内容の配列|
+
+##### add_contents()の例
+
+```javascript
+const context = new Context();
+
+const contents = [
+    {
+        type: "item",
+        label: "Alert",
+        callback: () => {
+            alert("Clicked!");
+        }
+    },
+    {
+        type: "separator"
+    },
+    {
+        type: "item",
+        label: "No Callback"
+    },
+];
+
+context.add_contents(contents);
+```
+
+#### open()
+
+コンテキストメニューを開きます。右クリックによってコンテキストメニューを開く処理はライブラリー側で行うため、基本的にこの関数を使用することはないはずです。
+
+|名前|引数の型|デフォルト|説明|
+|--:|--:|--:|--:|
+|event|MouseEvent|N/A|マウスイベント|
+
+#### close()
+
+コンテキストメニューを閉じます。開かれたコンテキストメニューをユーザーの操作に応じて閉じる処理はライブラリー側で行うため、基本的にこの関数を使用することはないはずです。引数はありません。

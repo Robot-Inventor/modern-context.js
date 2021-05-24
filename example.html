@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="target"></div>
+    <style>
+        #target {
+            width: 70vw;
+            height: 50vw;
+            background: #ff6a00;
+        }
+    </style>
+    <script src="context.js"></script>
+    <script>
+        const contents = [
+            {
+                type: "item",
+                label: "item1",
+                callback: () => {
+                    alert("item1");
+                }
+            },
+            {
+                type: "item",
+                label: "item2",
+                callback: () => {
+                    alert("item2");
+                }
+            },
+            {
+                type: "item",
+                label: "item3",
+                callback: () => {
+                    alert("item3");
+                }
+            },
+            {
+                type: "separator"
+            },
+            {
+                type: "item",
+                label: "Do nothing"
+            },
+        ];
+
+        const context = new Context("#target", contents);
+    </script>
+</body>
+</html>
