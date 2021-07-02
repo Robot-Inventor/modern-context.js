@@ -1,0 +1,22 @@
+{
+  "name": "modern-context",
+  "version": "1.0.0",
+  "description": "A modern, beautiful, and lightweight context menu JavaScript library inspired by Fluent Design.",
+  "main": "modern_context.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robot-Inventor/modern-context.js.git"
+  },
+  "author": "Robot-Inventor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Robot-Inventor/modern-context.js/issues"
+  },
+  "homepage": "https://github.com/Robot-Inventor/modern-context.js#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}

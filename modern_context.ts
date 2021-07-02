@@ -1,5 +1,14 @@
+interface contents_data {
+    type: string,
+    label: string,
+    callback: null | Function
+}
+
 class Context {
-    constructor(target_selector, contents = []) {
+    context: HTMLDivElement;
+    is_visible: boolean;
+
+    constructor(target_selector: string, contents = []) {
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -16,7 +25,7 @@ class Context {
     }
 }
 
-.context_menu_js_outer {
+.modern_context_js_outer {
     background: var(--background_color);
     position: absolute;
     border-radius: var(--corner_radius);
@@ -31,7 +40,7 @@ class Context {
     font-family: var(--font-family);
 }
 
-.context_menu_js_outer hr {
+.modern_context_js_outer hr {
     width: calc(100% - 2em);
     height: 0.1em;
     background: var(--text_color);
@@ -40,7 +49,7 @@ class Context {
     opacity: 0.5;
 }
 
-.context_menu_js_outer .context_item {
+.modern_context_js_outer .context_item {
     width: 100%;
     padding: 0.5em 1em;
     color: var(--text_color);
@@ -48,7 +57,7 @@ class Context {
     position: relative;
 }
 
-.context_menu_js_outer .context_item::before {
+.modern_context_js_outer .context_item::before {
     content: "";
     display: block;
     width: 100%;
@@ -61,34 +70,34 @@ class Context {
     opacity: 0;
 }
 
-.context_menu_js_outer .context_item.hover::before {
+.modern_context_js_outer .context_item.hover::before {
     opacity: 0.15;
 }
 
-.context_menu_js_outer .context_item .context_item_inner {
+.modern_context_js_outer .context_item .context_item_inner {
     transition: 0.1s;
 }
 
-.context_menu_js_outer .context_item:active .context_item_inner {
+.modern_context_js_outer .context_item:active .context_item_inner {
     transform: scale(0.9);
 }
         `;
         document.body.appendChild(style);
 
         this.context = document.createElement("div");
-        this.context.className = "context_menu_js_outer";
+        this.context.className = "modern_context_js_outer";
         document.body.appendChild(this.context);
 
         this.add_contents(contents);
 
         document.querySelectorAll(target_selector).forEach((target) => {
-            target.addEventListener("contextmenu", () => {
+            target.addEventListener("contextmenu", (event: any) => {
                 this.open(event);
                 event.preventDefault();
             });
         });
 
-        document.addEventListener("click", () => {
+        document.addEventListener("click", (event) => {
             if (event.target !== this.context) this.close();
         }, false);
 
@@ -96,7 +105,7 @@ class Context {
         this.is_visible = false;
     }
 
-    add_item(label, callback = () => { }) {
+    add_item(label: string, callback: Function = () => { }) {
         const item = document.createElement("div");
         item.className = "context_item";
         item.addEventListener("click", () => {
@@ -121,7 +130,7 @@ class Context {
         this.context.appendChild(document.createElement("hr"));
     }
 
-    add_contents(contents) {
+    add_contents(contents: Array<contents_data>) {
         for (let i = 0; i < contents.length; i++) {
             const content = contents[i];
 
@@ -138,7 +147,8 @@ class Context {
                         },
                         ...content
                     };
-                    this.add_item(item.label, item.callback);
+                    if (item.callback) this.add_item(item.label, item.callback);
+                    else this.add_item(item.label);
                     break;
 
                 case "separator":
@@ -148,8 +158,8 @@ class Context {
         }
     }
 
-    open(event) {
-        const context_show_transition_ms = "300";
+    open(event: MouseEvent) {
+        const context_show_transition_ms = 300;
         this.context.style.transition = "none";
 
         if (event.screenY < window.innerHeight / 2) {
@@ -192,15 +202,14 @@ class Context {
         this.is_visible = false;
     }
 
-    _watch_keydown(key) {
+    private _watch_keydown(key_event: KeyboardEvent) {
         if (this.is_visible === false) return;
 
-        const current_selected_item = this.context.querySelector(".context_item.hover") || this.context.querySelector(".context_item");
+        const current_selected_item: HTMLElement = this.context.querySelector(".context_item.hover") || this.context.querySelector(".context_item")!;
         const number_of_items = this.context.querySelectorAll(".context_item").length;
         const hovered_item_index = this._hovered_item_index();
-        const no_selected = hovered_item_index === null;
 
-        switch (key.key) {
+        switch (key_event.key) {
             case "Escape":
                 const div = document.createElement("div");
                 div.style.display = "none";
@@ -210,23 +219,15 @@ class Context {
                 break;
 
             case "ArrowDown":
-                if (no_selected) {
-                    this._hover(0);
-                    break;
-                }
+                if (hovered_item_index === null) this._hover(0);
+                else this._hover(hovered_item_index + 1 < number_of_items ? hovered_item_index + 1 : 0);
 
-                const next_item_index = hovered_item_index + 1 < number_of_items ? hovered_item_index + 1 : 0;
-                this._hover(next_item_index);
                 break;
 
             case "ArrowUp":
-                if (no_selected) {
-                    this._hover(number_of_items - 1);
-                    break;
-                }
+                if (hovered_item_index === null) this._hover(number_of_items - 1);
+                else this._hover(hovered_item_index - 1 >= 0 ? hovered_item_index - 1 : number_of_items - 1);
 
-                const previous_item_index = hovered_item_index - 1 >= 0 ? hovered_item_index - 1 : number_of_items - 1;
-                this._hover(previous_item_index);
                 break;
 
             case "Enter":
@@ -234,16 +235,16 @@ class Context {
                 break;
         }
 
-        event.preventDefault();
+        key_event.preventDefault();
     }
 
-    _reset_all_hover_status() {
+    private _reset_all_hover_status() {
         this.context.querySelectorAll(".context_item.hover").forEach((element) => {
             element.classList.remove("hover");
         });
     }
 
-    _hover(item) {
+    private _hover(item: number | HTMLElement) {
         this._reset_all_hover_status();
 
         if (typeof (item) == "number") {
@@ -253,7 +254,7 @@ class Context {
         }
     }
 
-    _hovered_item_index() {
+    private _hovered_item_index() {
         const hovered_item = this.context.querySelector(".context_item.hover");
         const context_items = this.context.querySelectorAll(".context_item");
         if (!hovered_item) {
@@ -262,5 +263,6 @@ class Context {
         for (let i = 0; i < context_items.length; i++) {
             if (hovered_item === context_items[i]) return i;
         }
+        return null;
     }
 }
