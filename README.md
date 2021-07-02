@@ -148,3 +148,12 @@ Open the context menu. Since the process of opening the context menu by right-cl
 #### close()
 
 Close the context menu. Since the process of closing the opened context menu in response to a user operation is handled by the library, you should not need to use this function. This function has no arguments.
+
+### CSS Custom Properties
+
+|Property|Default|Description|
+|--:|--:|--:|
+|--text_color|``#333333`` (``white`` in dark mode)|Text color in the context menu.|
+|--background_color|``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode)|Background color of the context menu.|
+|--corner-radius|``0.25em``|Corner radius size of the context menu.|
+|--font-family|``sans-serif``|Font family of text.|
