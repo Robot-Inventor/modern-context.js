@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Robot-Inventor/modern-context.js#readme",
   "devDependencies": {
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   }
 }
