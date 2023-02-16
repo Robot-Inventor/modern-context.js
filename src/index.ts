@@ -1,3 +1,6 @@
+/**
+ * Type of context menu contents.
+ */
 type contentsData = Array<{
     type: string;
     label: string;
@@ -364,4 +367,4 @@ class Context {
     }
 }
 
-export { Context };
+export { Context, contentsData };
