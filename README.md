@@ -10,17 +10,11 @@ ModernContext.js supports dark mode. If your browser is set to dark mode, the co
 
 ![screenshot](https://github.com/Robot-Inventor/modern-context.js/blob/main/picture/screenshot_dark.png)
 
-## Supported Browsers
-
-The following browsers are supported. ModernContext.js may work in other modern browsers, but I tested only the following browsers.
-
-- Google Chrome
-- Firefox
-- Microsoft Edge
-
 ## Usage
 
 See the [documentation](https://github.com/Robot-Inventor/modern-context.js/blob/main/docs/classes/Context.md) for more information.
+
+### npm
 
 ```console
 npm install modern-context
@@ -28,7 +22,17 @@ npm install modern-context
 
 ```typescript
 import { Context } from "modern-context";
+```
 
+### Browser
+
+```javascript
+import { Context } from "./dist/modern-context.min.js"
+```
+
+### Example
+
+```typescript
 const contents = [
     {
         type: "item",
@@ -49,7 +53,7 @@ const contents = [
 const context = new Context("#target", contents);
 ```
 
-## CSS Custom Properties
+### CSS Custom Properties
 
 | Property           | Default                                                               | Description                             |
 | :----------------- | :-------------------------------------------------------------------- | :-------------------------------------- |
@@ -57,6 +61,14 @@ const context = new Context("#target", contents);
 | --background-color | ``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode) | Background color of the context menu.   |
 | --corner-radius    | ``0.25em``                                                            | Corner radius size of the context menu. |
 | --font-family      | ``sans-serif``                                                        | Font family of text.                    |
+
+## Supported Browsers
+
+The following browsers are supported. ModernContext.js may work in other modern browsers, but I tested only the following browsers.
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
 
 ## Development
 
