@@ -27,11 +27,11 @@ Note: Firefox does not currently supports CSS ``backdrop-filter`` property, so t
 ```javascript
 const context = new Context("#target");
 
-context.add_item("Alert", () => {
+context.addItem("Alert", () => {
     alert("Clicked!")
 });
-context.add_separator();
-context.add_item("No Callback");
+context.addSeparator();
+context.addItem("No Callback");
 ```
 
 The following code will have the same behavior.
@@ -53,10 +53,10 @@ const contents = [
     {
         type: "item",
         label: "No Callback"
-    },
+    }
 ];
 
-context.add_contents(contents);
+context.addContents(contents);
 ```
 
 And you can also write the following.
@@ -76,7 +76,7 @@ const contents = [
     {
         type: "item",
         label: "No Callback"
-    },
+    }
 ];
 
 const context = new Context("#target", contents);
@@ -86,31 +86,31 @@ const context = new Context("#target", contents);
 
 #### Context()
 
-|Name|Value Type|Default|Description|
-|--:|--:|--:|--:|
-|target_selector|String|N/A|CSS selector of the target element.|
-|contents|Array|[ ]|The contents of the context menu. This argument is optional. For more detail, see ``add_contents()``.|
+|           Name | Value Type | Default |                                                                                           Description |
+| -------------: | ---------: | ------: | ----------------------------------------------------------------------------------------------------: |
+| targetSelector |     String |     N/A |                                                                   CSS selector of the target element. |
+|       contents |      Array |     [ ] | The contents of the context menu. This argument is optional. For more detail, see ``add_contents()``. |
 
 #### add_item()
 
 Add a item to the context menu.
 
-|Name|Value Type|Default|Description|
-|--:|--:|--:|--:|
-|label|String|N/A|The label of the item.|
-|callback|Function|() => {}|When the user select the item, this function will be called.|
+|     Name | Value Type |  Default |                                                  Description |
+| -------: | ---------: | -------: | -----------------------------------------------------------: |
+|    label |     String |      N/A |                                       The label of the item. |
+| callback |   Function | () => {} | When the user select the item, this function will be called. |
 
-#### add_separator()
+#### addSeparator()
 
 Add a separator to the context menu. This function has no arguments.
 
-#### add_contents()
+#### addContents()
 
 Add item(s) or separator(s) to the context menu.
 
-|Name|Value Type|Default|Description|
-|--:|--:|--:|--:|
-|contents|Array of Object|N/A|Array of contents you want to add to the context menu.|
+|     Name |      Value Type | Default |                                            Description |
+| -------: | --------------: | ------: | -----------------------------------------------------: |
+| contents | Array of Object |     N/A | Array of contents you want to add to the context menu. |
 
 ##### Example of add_contents()
 
@@ -134,16 +134,16 @@ const contents = [
     },
 ];
 
-context.add_contents(contents);
+context.addContents(contents);
 ```
 
 #### open()
 
 Open the context menu. Since the process of opening the context menu by right-clicking is handled by the library, you should not need to use this function.
 
-|Name|Value Type|Default|Description|
-|--:|--:|--:|--:|
-|event|MouseEvent|N/A|Mouse event.|
+|  Name | Value Type | Default |  Description |
+| ----: | ---------: | ------: | -----------: |
+| event | MouseEvent |     N/A | Mouse event. |
 
 #### close()
 
@@ -151,9 +151,9 @@ Close the context menu. Since the process of closing the opened context menu in 
 
 ### CSS Custom Properties
 
-|Property|Default|Description|
-|--:|--:|--:|
-|--text_color|``#333333`` (``white`` in dark mode)|Text color in the context menu.|
-|--background_color|``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode)|Background color of the context menu.|
-|--corner-radius|``0.25em``|Corner radius size of the context menu.|
-|--font-family|``sans-serif``|Font family of text.|
+|           Property |                                                               Default |                             Description |
+| -----------------: | --------------------------------------------------------------------: | --------------------------------------: |
+|       --text-color |                                  ``#333333`` (``white`` in dark mode) |         Text color in the context menu. |
+| --background-color | ``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode) |   Background color of the context menu. |
+|    --corner-radius |                                                            ``0.25em`` | Corner radius size of the context menu. |
+|      --font-family |                                                        ``sans-serif`` |                    Font family of text. |

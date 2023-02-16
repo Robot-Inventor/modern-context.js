@@ -27,11 +27,11 @@ ModernContext.jsはダークモードをサポートしています。ブラウ�
 ```javascript
 const context = new Context("#target");
 
-context.add_item("Alert", () => {
+context.addItem("Alert", () => {
     alert("Clicked!")
 });
-context.add_separator();
-context.add_item("No Callback");
+context.addSeparator();
+context.addItem("No Callback");
 ```
 
 次のコードでも同じように動作します。
@@ -53,10 +53,10 @@ const contents = [
     {
         type: "item",
         label: "No Callback"
-    },
+    }
 ];
 
-context.add_contents(contents);
+context.addContents(contents);
 ```
 
 また、次のように書くこともできます。
@@ -76,7 +76,7 @@ const contents = [
     {
         type: "item",
         label: "No Callback"
-    },
+    }
 ];
 
 const context = new Context("#target", contents);
@@ -86,33 +86,33 @@ const context = new Context("#target", contents);
 
 #### Context()
 
-|名前|引数の型|デフォルト|説明|
-|--:|--:|--:|--:|
-|target_selector|String|N/A|ターゲットとする要素のCSSセレクター|
-|contents|Array Of Object|[ ]|コンテキストメニューの内容。この引数は省略可能です。詳細は``add_contents()``を参照|
+|           名前 |        引数の型 | デフォルト |                                                                               説明 |
+| -------------: | --------------: | ---------: | ---------------------------------------------------------------------------------: |
+| targetSelector |          String |        N/A |                                                ターゲットとする要素のCSSセレクター |
+|       contents | Array Of Object |        [ ] | コンテキストメニューの内容。この引数は省略可能です。詳細は``add_contents()``を参照 |
 
-#### add_item()
+#### addItem()
 
 コンテキストメニューにアイテムを追加します。
 
-|名前|引数の型|デフォルト|説明|
-|--:|--:|--:|--:|
-|label|String|N/A|アイテムのラベル|
-|callback|Function|() => {}|ユーザーがアイテムを選択したとき、この関数が呼び出されます|
+|     名前 | 引数の型 | デフォルト |                                                       説明 |
+| -------: | -------: | ---------: | ---------------------------------------------------------: |
+|    label |   String |        N/A |                                           アイテムのラベル |
+| callback | Function |   () => {} | ユーザーがアイテムを選択したとき、この関数が呼び出されます |
 
-#### add_separator()
+#### addSeparator()
 
 コンテキストメニューにセパレーターを追加します。引数はありません。
 
-#### add_contents()
+#### addContents()
 
 コンテキストメニューにアイテムやセパレーターを追加します。
 
-|名前|引数の型|デフォルト|説明|
-|--:|--:|--:|--:|
-|contents|Array of Object|N/A|コンテキストメニューに追加する内容の配列|
+|     名前 |        引数の型 | デフォルト |                                     説明 |
+| -------: | --------------: | ---------: | ---------------------------------------: |
+| contents | Array of Object |        N/A | コンテキストメニューに追加する内容の配列 |
 
-##### add_contents()の例
+##### addContents()の例
 
 ```javascript
 const context = new Context();
@@ -131,19 +131,19 @@ const contents = [
     {
         type: "item",
         label: "No Callback"
-    },
+    }
 ];
 
-context.add_contents(contents);
+context.addContents(contents);
 ```
 
 #### open()
 
 コンテキストメニューを開きます。右クリックによってコンテキストメニューを開く処理はライブラリー側で行うため、基本的にこの関数を使用することはないはずです。
 
-|名前|引数の型|デフォルト|説明|
-|--:|--:|--:|--:|
-|event|MouseEvent|N/A|マウスイベント|
+|  名前 |   引数の型 | デフォルト |           説明 |
+| ----: | ---------: | ---------: | -------------: |
+| event | MouseEvent |        N/A | マウスイベント |
 
 #### close()
 
@@ -151,9 +151,9 @@ context.add_contents(contents);
 
 ### CSSカスタムプロパティー
 
-|プロパティー|デフォルト|説明|
-|--:|--:|--:|
-|--text_color|``#333333``（ダークモードでは``white``）|コンテキストメニューの文字色|
-|--background_color|``rgba(255, 255, 255, 0.7)``（ダークモードでは``rgba(51, 51, 51, 0.7)``）|コンテキストメニューの背景色|
-|--corner-radius|``0.25em``|コンテキストメニューの角の半径|
-|--font-family|``sans-serif``|テキストのフォントファミリー|
+|       プロパティー |                                                                デフォルト |                           説明 |
+| -----------------: | ------------------------------------------------------------------------: | -----------------------------: |
+|       --text-color |                                  ``#333333``（ダークモードでは``white``） |   コンテキストメニューの文字色 |
+| --background-color | ``rgba(255, 255, 255, 0.7)``（ダークモードでは``rgba(51, 51, 51, 0.7)``） |   コンテキストメニューの背景色 |
+|    --corner-radius |                                                                ``0.25em`` | コンテキストメニューの角の半径 |
+|      --font-family |                                                            ``sans-serif`` |   テキストのフォントファミリー |
