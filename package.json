@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "typedoc --plugin typedoc-plugin-markdown --cleanOutputDir --excludePrivate --includeVersion --readme none --name \"modern-context.js\" \"src/index.ts\"",
+    "doc": "typedoc --plugin typedoc-plugin-markdown --cleanOutputDir --excludePrivate --includeVersion --readme none --name \"modernContext.js\" \"src/index.ts\"",
     "version": "npm run doc",
     "prepublishOnly": "npm run build"
   },

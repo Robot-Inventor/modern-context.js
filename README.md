@@ -20,7 +20,34 @@ The following browsers are supported. ModernContext.js may work in other modern 
 
 ## Usage
 
-See the [documentation](https://github.com/Robot-Inventor/modern-context.js/blob/main/docs/README.md).
+See the [documentation](https://github.com/Robot-Inventor/modern-context.js/blob/main/docs/classes/Context.md) for more information.
+
+```console
+npm install modern-context
+```
+
+```typescript
+import { Context } from "modern-context";
+
+const contents = [
+    {
+        type: "item",
+        label: "Alert",
+        callback: () => {
+            alert("Clicked!");
+        }
+    },
+    {
+        type: "separator"
+    },
+    {
+        type: "item",
+        label: "No Callback"
+    }
+];
+
+const context = new Context("#target", contents);
+```
 
 ## CSS Custom Properties
 
