@@ -1,14 +1,19 @@
-interface contentsData {
+type contentsData = Array<{
     type: string;
     label: string;
     callback: null | Function;
-}
+}>;
 
 class Context {
     context: HTMLDivElement;
     isVisible: boolean;
 
-    constructor(targetSelector: string, contents = []) {
+    /**
+     * Configure the new context menu.
+     * @param targetSelector Element to set the context menu.
+     * @param contents The contents of the context menu.
+     */
+    constructor(targetSelector: string, contents: contentsData = []) {
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -109,6 +114,11 @@ class Context {
         this.isVisible = false;
     }
 
+    /**
+     * Add a new clickable item to the context menu.
+     * @param label Label text.
+     * @param callback Callback function.
+     */
     addItem(label: string, callback: Function = () => {}) {
         const item = document.createElement("div");
         item.className = "context-item";
@@ -130,11 +140,18 @@ class Context {
         this.context.appendChild(item);
     }
 
+    /**
+     * Add a new separator to the context menu.
+     */
     addSeparator() {
         this.context.appendChild(document.createElement("hr"));
     }
 
-    addContents(contents: Array<contentsData>) {
+    /**
+     * Add new contents (clickable items or separators) to the context menu.
+     * @param contents Contents to add.
+     */
+    addContents(contents: contentsData) {
         for (let i = 0; i < contents.length; i++) {
             const content = contents[i];
 
@@ -162,6 +179,10 @@ class Context {
         }
     }
 
+    /**
+     * Force the context menu to open without user interaction.
+     * @param event Mouse event.
+     */
     open(event: MouseEvent) {
         const contextShowTransitionMs = 300;
         this.context.style.transition = "none";
@@ -199,6 +220,9 @@ class Context {
         this.isVisible = true;
     }
 
+    /**
+     * Force the context menu to close without user interaction.
+     */
     close() {
         this.context.style.display = "none";
 
@@ -206,6 +230,10 @@ class Context {
         this.isVisible = false;
     }
 
+    /**
+     * Watch keyboard event to support shortcut key.
+     * @param keyEvent Keyboard event.
+     */
     private watchKeydown(keyEvent: KeyboardEvent) {
         if (this.isVisible === false) return;
 
@@ -243,12 +271,19 @@ class Context {
         keyEvent.preventDefault();
     }
 
+    /**
+     * Remove the hover state of all items.
+     */
     private resetAllHoverStatus() {
         this.context.querySelectorAll(".context-item.hover").forEach((element) => {
             element.classList.remove("hover");
         });
     }
 
+    /**
+     * Make the specified item to hover.
+     * @param item The target item itself or an index of the item.
+     */
     private hover(item: number | HTMLElement) {
         this.resetAllHoverStatus();
 
@@ -259,6 +294,10 @@ class Context {
         }
     }
 
+    /**
+     * Get the index of hovered item.
+     * @returns The index of hovered item.
+     */
     private hoveredItemIndex() {
         const hoveredItem = this.context.querySelector(".context-item.hover");
         const contextItems = this.context.querySelectorAll(".context-item");
