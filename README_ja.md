@@ -20,8 +20,6 @@ ModernContext.jsはダークモードをサポートしています。ブラウ�
 - Firefox
 - Microsoft Edge
 
-注意：Firefoxは現在、CSSの``backdrop-filter``プロパティーをサポートしていないため、コンテキストメニューの背景のブラーエフェクトはFirefoxでは動作しません。
-
 ## 使い方
 
 ```javascript

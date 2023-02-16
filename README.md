@@ -20,8 +20,6 @@ The following browsers are supported. ModernContext.js may work in other modern 
 - Firefox
 - Microsoft Edge
 
-Note: Firefox does not currently supports CSS ``backdrop-filter`` property, so the blur effect behind of the context is not active if you are using Firefox.
-
 ## Usage
 
 ```javascript
