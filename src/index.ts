@@ -4,14 +4,36 @@ type contentsData = Array<{
     callback: null | Function;
 }>;
 
+/**
+ * Create and control the context menu.
+ */
 class Context {
-    context: HTMLDivElement;
-    isVisible: boolean;
+    private context: HTMLDivElement;
+    private isVisible: boolean;
 
     /**
      * Configure the new context menu.
      * @param targetSelector Element to set the context menu.
      * @param contents The contents of the context menu.
+     * @example
+     * const contents = [
+     *     {
+     *         type: "item",
+     *         label: "Alert",
+     *         callback: () => {
+     *             alert("Clicked!");
+     *         }
+     *     },
+     *     {
+     *         type: "separator"
+     *     },
+     *     {
+     *         type: "item",
+     *         label: "No Callback"
+     *     }
+     * ];
+     *
+     * const context = new Context("#target", contents);
      */
     constructor(targetSelector: string, contents: contentsData = []) {
         const style = document.createElement("style");
@@ -118,6 +140,12 @@ class Context {
      * Add a new clickable item to the context menu.
      * @param label Label text.
      * @param callback Callback function.
+     * @example
+     * const context = new Context("#target");
+     * context.addItem("Alert", () => {
+     *     alert("Clicked!")
+     * });
+     * context.addItem("No Callback");
      */
     addItem(label: string, callback: Function = () => {}) {
         const item = document.createElement("div");
@@ -142,6 +170,12 @@ class Context {
 
     /**
      * Add a new separator to the context menu.
+     * @example
+     * const context = new Context("#target");
+     * context.addItem("ItemA");
+     * // Add a separator between itemA and itemB.
+     * context.addSeparator();
+     * context.addItem("ItemB");
      */
     addSeparator() {
         this.context.appendChild(document.createElement("hr"));
@@ -150,6 +184,25 @@ class Context {
     /**
      * Add new contents (clickable items or separators) to the context menu.
      * @param contents Contents to add.
+     * @example
+     * const context = new Context("#target");
+     * const contents = [
+     *     {
+     *         type: "item",
+     *         label: "Alert",
+     *         callback: () => {
+     *             alert("Clicked!");
+     *         }
+     *     },
+     *     {
+     *         type: "separator"
+     *     },
+     *     {
+     *         type: "item",
+     *         label: "No Callback"
+     *     }
+     * ];
+     * context.addContents(contents);
      */
     addContents(contents: contentsData) {
         for (let i = 0; i < contents.length; i++) {
