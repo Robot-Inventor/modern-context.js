@@ -15,6 +15,7 @@
   "files": [
     "dist"
   ],
+  "types": "dist/index.d.ts",
   "author": "Robot-Inventor",
   "license": "MIT",
   "bugs": {
