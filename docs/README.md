@@ -22,4 +22,4 @@ Type of context menu contents.
 
 #### Defined in
 
-[index.ts:4](https://github.com/Robot-Inventor/modern-context.js/blob/f1432fb/src/index.ts#L4)
+[modern-context.ts:4](https://github.com/Robot-Inventor/modern-context.js/blob/47188ea/src/modern-context.ts#L4)
