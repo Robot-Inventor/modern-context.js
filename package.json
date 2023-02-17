@@ -15,6 +15,15 @@
     "type": "git",
     "url": "git+https://github.com/Robot-Inventor/modern-context.js.git"
   },
+  "keywords": [
+    "contextmenu",
+    "context-menu",
+    "context menu",
+    "context",
+    "menu",
+    "rightclick",
+    "right-click"
+  ],
   "files": [
     "dist"
   ],
