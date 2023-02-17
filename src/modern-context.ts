@@ -1,11 +1,11 @@
 /**
  * Type of context menu contents.
  */
-type contentsData = Array<{
+type ContentsData = {
     type: string;
     label: string;
     callback: null | Function;
-}>;
+}[];
 
 /**
  * Create and control the context menu.
@@ -38,7 +38,7 @@ class Context {
      *
      * const context = new Context("#target", contents);
      */
-    constructor(targetSelector: string, contents: contentsData = []) {
+    constructor(targetSelector: string, contents: ContentsData = []) {
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -207,7 +207,7 @@ class Context {
      * ];
      * context.addContents(contents);
      */
-    addContents(contents: contentsData) {
+    addContents(contents: ContentsData) {
         for (let i = 0; i < contents.length; i++) {
             const content = contents[i];
 
@@ -367,4 +367,4 @@ class Context {
     }
 }
 
-export { Context, contentsData };
+export { Context, ContentsData };

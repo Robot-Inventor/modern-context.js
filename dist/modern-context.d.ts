@@ -9,11 +9,11 @@
 /**
  * Type of context menu contents.
  */
-type contentsData = Array<{
+type ContentsData = {
     type: string;
     label: string;
     callback: null | Function;
-}>;
+}[];
 /**
  * Create and control the context menu.
  */
@@ -44,7 +44,7 @@ declare class Context {
      *
      * const context = new Context("#target", contents);
      */
-    constructor(targetSelector: string, contents?: contentsData);
+    constructor(targetSelector: string, contents?: ContentsData);
     /**
      * Add a new clickable item to the context menu.
      * @param label Label text.
@@ -90,7 +90,7 @@ declare class Context {
      * ];
      * context.addContents(contents);
      */
-    addContents(contents: contentsData): void;
+    addContents(contents: ContentsData): void;
     /**
      * Force the context menu to open without user interaction.
      * @param event Mouse event.
@@ -120,4 +120,4 @@ declare class Context {
      */
     private hoveredItemIndex;
 }
-export { Context, contentsData };
+export { Context, ContentsData };

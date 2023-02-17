@@ -10,16 +10,16 @@ modernContext.js - v1.1.0
 
 ### Type Aliases
 
-- [contentsData](README.md#contentsdata)
+- [ContentsData](README.md#contentsdata)
 
 ## Type Aliases
 
-### contentsData
+### ContentsData
 
-Ƭ **contentsData**: { `callback`: ``null`` \| `Function` ; `label`: `string` ; `type`: `string`  }[]
+Ƭ **ContentsData**: { `callback`: ``null`` \| `Function` ; `label`: `string` ; `type`: `string`  }[]
 
 Type of context menu contents.
 
 #### Defined in
 
-[modern-context.ts:4](https://github.com/Robot-Inventor/modern-context.js/blob/47188ea/src/modern-context.ts#L4)
+[modern-context.ts:4](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L4)
