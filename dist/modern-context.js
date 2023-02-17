@@ -48,24 +48,15 @@ class Context {
         this.hoveredItemIndex = null;
         const style = document.createElement("style");
         style.textContent = `
-:root {
-    --mc-text-color: #333333;
-    --mc-background-color: rgba(255, 255, 255, 0.7);
-    --mc-corner-radius: 0.25em;
-    --mc-font-family: sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --mc-text-color: white;
-        --mc-background-color: rgba(51, 51, 51, 0.7);
-    }
-}
-
 .${this.CLASS_NAMES.OUTER} {
-    background: var(--mc-background-color);
+    --mc-text-color-private: var(--mc-text-color, #333333);
+    --mc-background-color-private: var(--mc-background-color, rgba(255, 255, 255, 0.7));
+    --mc-corner-radius-private: var(--mc-corner-radius, 0.25em);
+    --mc-font-family-private: var(--mc-font-family, sans-serif);
+
+    background: var(--mc-background-color-private);
     position: absolute;
-    border-radius: var(--mc-corner-radius);
+    border-radius: var(--mc-corner-radius-private);
     filter: drop-shadow(0.25em 0.25em 0.5em rgba(0, 0, 0, 0.2));
     padding: 0.5em 0;
     display: none;
@@ -74,13 +65,20 @@ class Context {
     cursor: default;
     user-select: none;
     backdrop-filter: blur(0.25em);
-    font-family: var(--mc-font-family);
+    font-family: var(--mc-font-family-private);
+}
+
+@media (prefers-color-scheme: dark) {
+    .${this.CLASS_NAMES.OUTER} {
+        --mc-text-color-private: var(--mc-text-color, white);
+        --mc-background-color-private: var(--mc-background-color, rgba(51, 51, 51, 0.7));
+    }
 }
 
 .${this.CLASS_NAMES.OUTER} hr {
     width: calc(100% - 2em);
     height: 0.1em;
-    background: var(--mc-text-color);
+    background: var(--mc-text-color-private);
     border: none;
     margin: 0.25em 1em;
     opacity: 0.5;
@@ -89,7 +87,7 @@ class Context {
 .${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM} {
     width: 100%;
     padding: 0.5em 1em;
-    color: var(--mc-text-color);
+    color: var(--mc-text-color-private);
     box-sizing: border-box;
     position: relative;
 }
@@ -103,7 +101,7 @@ class Context {
     position: absolute;
     top: 0;
     left: 0;
-    background: var(--mc-text-color);
+    background: var(--mc-text-color-private);
     opacity: 0;
 }
 
