@@ -51,14 +51,14 @@ const context = new Context("#target", contents);
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `targetSelector` | `string` | `undefined` | Element to set the context menu. |
-| `contents` | [`ContentsData`](../README.md#contentsdata) | `[]` | The contents of the context menu. |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `targetSelector` | `string` | Element to set the context menu. |
+| `contents?` | [`McContents`](../README.md#mccontents) | The contents of the context menu. |
 
 #### Defined in
 
-[modern-context.ts:41](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L41)
+[modern-context.ts:59](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L59)
 
 ## Methods
 
@@ -95,7 +95,7 @@ context.addContents(contents);
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `contents` | [`ContentsData`](../README.md#contentsdata) | Contents to add. |
+| `contents` | [`McContents`](../README.md#mccontents) | Contents to add. |
 
 #### Returns
 
@@ -103,7 +103,7 @@ context.addContents(contents);
 
 #### Defined in
 
-[modern-context.ts:210](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L210)
+[modern-context.ts:230](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L230)
 
 ___
 
@@ -136,7 +136,7 @@ context.addItem("No Callback");
 
 #### Defined in
 
-[modern-context.ts:153](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L153)
+[modern-context.ts:173](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L173)
 
 ___
 
@@ -162,7 +162,7 @@ context.addItem("ItemB");
 
 #### Defined in
 
-[modern-context.ts:183](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L183)
+[modern-context.ts:203](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L203)
 
 ___
 
@@ -178,7 +178,7 @@ Force the context menu to close without user interaction.
 
 #### Defined in
 
-[modern-context.ts:282](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L282)
+[modern-context.ts:298](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L298)
 
 ___
 
@@ -200,4 +200,4 @@ Force the context menu to open without user interaction.
 
 #### Defined in
 
-[modern-context.ts:242](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L242)
+[modern-context.ts:258](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L258)

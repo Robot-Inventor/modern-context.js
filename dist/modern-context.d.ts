@@ -7,13 +7,29 @@
  * See the LICENSE file in the root directory.
  */
 /**
+ * Type of context menu item.
+ */
+interface McItem {
+    type: "item";
+    /**
+     * Label text shown in the context menu.
+     */
+    label: string;
+    /**
+     * Callback function to be called when the item is clicked.
+     */
+    callback?: Function;
+}
+/**
+ * Type of context menu separator.
+ */
+interface McSeparator {
+    type: "separator";
+}
+/**
  * Type of context menu contents.
  */
-type ContentsData = {
-    type: string;
-    label: string;
-    callback: null | Function;
-}[];
+type McContents = (McItem | McSeparator)[];
 /**
  * Create and control the context menu.
  */
@@ -44,7 +60,7 @@ declare class Context {
      *
      * const context = new Context("#target", contents);
      */
-    constructor(targetSelector: string, contents?: ContentsData);
+    constructor(targetSelector: string, contents?: McContents);
     /**
      * Add a new clickable item to the context menu.
      * @param label Label text.
@@ -90,7 +106,7 @@ declare class Context {
      * ];
      * context.addContents(contents);
      */
-    addContents(contents: ContentsData): void;
+    addContents(contents: McContents): void;
     /**
      * Force the context menu to open without user interaction.
      * @param event Mouse event.
@@ -120,4 +136,4 @@ declare class Context {
      */
     private hoveredItemIndex;
 }
-export { Context, ContentsData };
+export { Context, McItem, McSeparator, McContents };

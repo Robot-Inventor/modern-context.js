@@ -1,11 +1,29 @@
 /**
+ * Type of context menu item.
+ */
+interface McItem {
+    type: "item";
+    /**
+     * Label text shown in the context menu.
+     */
+    label: string;
+    /**
+     * Callback function to be called when the item is clicked.
+     */
+    callback?: Function;
+}
+
+/**
+ * Type of context menu separator.
+ */
+interface McSeparator {
+    type: "separator";
+}
+
+/**
  * Type of context menu contents.
  */
-type ContentsData = {
-    type: string;
-    label: string;
-    callback: null | Function;
-}[];
+type McContents = (McItem | McSeparator)[];
 
 /**
  * Create and control the context menu.
@@ -38,7 +56,7 @@ class Context {
      *
      * const context = new Context("#target", contents);
      */
-    constructor(targetSelector: string, contents: ContentsData = []) {
+    constructor(targetSelector: string, contents?: McContents) {
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -118,7 +136,9 @@ class Context {
         this.context.className = "modern-context-js-outer";
         document.body.appendChild(this.context);
 
-        this.addContents(contents);
+        if (contents) {
+            this.addContents(contents);
+        }
 
         document.querySelectorAll(targetSelector).forEach((target) => {
             target.addEventListener("contextmenu", (event: any) => {
@@ -207,13 +227,9 @@ class Context {
      * ];
      * context.addContents(contents);
      */
-    addContents(contents: ContentsData) {
+    addContents(contents: McContents) {
         for (let i = 0; i < contents.length; i++) {
             const content = contents[i];
-
-            const types = ["item", "separator"];
-
-            if (types.includes(content.type) === false) continue;
 
             switch (content.type) {
                 case "item":
@@ -367,4 +383,4 @@ class Context {
     }
 }
 
-export { Context, ContentsData };
+export { Context, McItem, McSeparator, McContents };

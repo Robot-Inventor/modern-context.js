@@ -8,18 +8,23 @@ modernContext.js - v1.1.0
 
 - [Context](classes/Context.md)
 
+### Interfaces
+
+- [McItem](interfaces/McItem.md)
+- [McSeparator](interfaces/McSeparator.md)
+
 ### Type Aliases
 
-- [ContentsData](README.md#contentsdata)
+- [McContents](README.md#mccontents)
 
 ## Type Aliases
 
-### ContentsData
+### McContents
 
-Ƭ **ContentsData**: { `callback`: ``null`` \| `Function` ; `label`: `string` ; `type`: `string`  }[]
+Ƭ **McContents**: ([`McItem`](interfaces/McItem.md) \| [`McSeparator`](interfaces/McSeparator.md))[]
 
 Type of context menu contents.
 
 #### Defined in
 
-[modern-context.ts:4](https://github.com/Robot-Inventor/modern-context.js/blob/7163123/src/modern-context.ts#L4)
+[modern-context.ts:26](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L26)

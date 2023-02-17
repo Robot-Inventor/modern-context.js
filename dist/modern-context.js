@@ -36,7 +36,7 @@ class Context {
      *
      * const context = new Context("#target", contents);
      */
-    constructor(targetSelector, contents = []) {
+    constructor(targetSelector, contents) {
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -114,7 +114,9 @@ class Context {
         this.context = document.createElement("div");
         this.context.className = "modern-context-js-outer";
         document.body.appendChild(this.context);
-        this.addContents(contents);
+        if (contents) {
+            this.addContents(contents);
+        }
         document.querySelectorAll(targetSelector).forEach((target) => {
             target.addEventListener("contextmenu", (event) => {
                 this.open(event);
@@ -195,9 +197,6 @@ class Context {
     addContents(contents) {
         for (let i = 0; i < contents.length; i++) {
             const content = contents[i];
-            const types = ["item", "separator"];
-            if (types.includes(content.type) === false)
-                continue;
             switch (content.type) {
                 case "item":
                     const item = {
