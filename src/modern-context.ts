@@ -173,6 +173,7 @@ class Context {
     addItem(label: string, callback: Function = () => {}) {
         const item = document.createElement("div");
         item.className = "context-item";
+
         item.addEventListener("click", () => {
             callback();
         });
@@ -228,25 +229,11 @@ class Context {
      * context.addContents(contents);
      */
     addContents(contents: McContents) {
-        for (let i = 0; i < contents.length; i++) {
-            const content = contents[i];
-
-            switch (content.type) {
-                case "item":
-                    const item = {
-                        ...{
-                            label: "",
-                            callback: () => {}
-                        },
-                        ...content
-                    };
-                    if (item.callback) this.addItem(item.label, item.callback);
-                    else this.addItem(item.label);
-                    break;
-
-                case "separator":
-                    this.addSeparator();
-                    break;
+        for (const content of contents) {
+            if (content.type === "item") {
+                this.addItem(content.label, content.callback);
+            } else {
+                this.addSeparator();
             }
         }
     }
