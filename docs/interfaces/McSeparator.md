@@ -18,4 +18,4 @@ Type of context menu separator.
 
 #### Defined in
 
-[modern-context.ts:20](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L20)
+[modern-context.ts:20](https://github.com/Robot-Inventor/modern-context.js/blob/b0fc0fe/src/modern-context.ts#L20)

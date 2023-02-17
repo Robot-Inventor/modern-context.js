@@ -34,8 +34,11 @@ type McContents = (McItem | McSeparator)[];
  * Create and control the context menu.
  */
 declare class Context {
-    private context;
+    private readonly context;
     private isVisible;
+    private readonly allItems;
+    private hoveredItemIndex;
+    private readonly CLASS_NAMES;
     /**
      * Configure the new context menu.
      * @param targetSelector Element to set the context menu.
@@ -127,13 +130,8 @@ declare class Context {
     private resetAllHoverStatus;
     /**
      * Make the specified item to hover.
-     * @param item The target item itself or an index of the item.
+     * @param itemIndex Index of the target item. Default value is {@link hoveredItemIndex} || 0.
      */
     private hover;
-    /**
-     * Get the index of hovered item.
-     * @returns The index of hovered item.
-     */
-    private hoveredItemIndex;
 }
 export { Context, McItem, McSeparator, McContents };

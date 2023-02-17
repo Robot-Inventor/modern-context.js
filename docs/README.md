@@ -27,4 +27,4 @@ Type of context menu contents.
 
 #### Defined in
 
-[modern-context.ts:26](https://github.com/Robot-Inventor/modern-context.js/blob/3c1f0d7/src/modern-context.ts#L26)
+[modern-context.ts:26](https://github.com/Robot-Inventor/modern-context.js/blob/b0fc0fe/src/modern-context.ts#L26)

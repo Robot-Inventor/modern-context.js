@@ -29,8 +29,15 @@ type McContents = (McItem | McSeparator)[];
  * Create and control the context menu.
  */
 class Context {
-    private context: HTMLDivElement;
+    private readonly context: HTMLDivElement;
     private isVisible: boolean;
+    private readonly allItems: HTMLDivElement[];
+    private hoveredItemIndex: null | number;
+    private readonly CLASS_NAMES = {
+        OUTER: "mc-context",
+        ITEM: "mc-context-item",
+        ITEM_INNER: "mc-context-item-inner"
+    } as const;
 
     /**
      * Configure the new context menu.
@@ -57,6 +64,9 @@ class Context {
      * const context = new Context("#target", contents);
      */
     constructor(targetSelector: string, contents?: McContents) {
+        this.allItems = [];
+        this.hoveredItemIndex = null;
+
         const style = document.createElement("style");
         style.textContent = `
 :root {
@@ -73,7 +83,7 @@ class Context {
     }
 }
 
-.modern-context-js-outer {
+.${this.CLASS_NAMES.OUTER} {
     background: var(--mc-background-color);
     position: absolute;
     border-radius: var(--mc-corner-radius);
@@ -88,7 +98,7 @@ class Context {
     font-family: var(--mc-font-family);
 }
 
-.modern-context-js-outer hr {
+.${this.CLASS_NAMES.OUTER} hr {
     width: calc(100% - 2em);
     height: 0.1em;
     background: var(--mc-text-color);
@@ -97,7 +107,7 @@ class Context {
     opacity: 0.5;
 }
 
-.modern-context-js-outer .context-item {
+.${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM} {
     width: 100%;
     padding: 0.5em 1em;
     color: var(--mc-text-color);
@@ -105,7 +115,7 @@ class Context {
     position: relative;
 }
 
-.modern-context-js-outer .context-item::before {
+.${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM}::before {
     content: "";
     display: block;
     width: 100%;
@@ -118,22 +128,22 @@ class Context {
     opacity: 0;
 }
 
-.modern-context-js-outer .context-item.hover::before {
+.${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM}.hover::before {
     opacity: 0.15;
 }
 
-.modern-context-js-outer .context-item .context-item-inner {
+.${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM} .${this.CLASS_NAMES.ITEM_INNER} {
     transition: 0.1s;
 }
 
-.modern-context-js-outer .context-item:active .context-item-inner {
+.${this.CLASS_NAMES.OUTER} .${this.CLASS_NAMES.ITEM}:active .${this.CLASS_NAMES.ITEM_INNER} {
     transform: scale(0.9);
 }
         `;
         document.body.appendChild(style);
 
         this.context = document.createElement("div");
-        this.context.className = "modern-context-js-outer";
+        this.context.className = this.CLASS_NAMES.OUTER;
         document.body.appendChild(this.context);
 
         if (contents) {
@@ -155,7 +165,13 @@ class Context {
             false
         );
 
-        document.addEventListener("keydown", this.watchKeydown.bind(this), false);
+        document.addEventListener(
+            "keydown",
+            (event) => {
+                this.watchKeydown(event);
+            },
+            false
+        );
         this.isVisible = false;
     }
 
@@ -172,20 +188,23 @@ class Context {
      */
     addItem(label: string, callback: Function = () => {}) {
         const item = document.createElement("div");
-        item.className = "context-item";
+        item.className = this.CLASS_NAMES.ITEM;
+        this.allItems.push(item);
+        const indexOfItem = this.allItems.length - 1;
 
         item.addEventListener("click", () => {
             callback();
         });
         item.addEventListener("mouseover", () => {
-            this.hover(item);
+            this.hover(indexOfItem);
+            this.hoveredItemIndex = indexOfItem;
         });
         item.addEventListener("mouseleave", () => {
             this.resetAllHoverStatus();
         });
 
         const inner = document.createElement("div");
-        inner.className = "context-item-inner";
+        inner.className = this.CLASS_NAMES.ITEM_INNER;
         inner.textContent = label;
 
         item.appendChild(inner);
@@ -243,37 +262,39 @@ class Context {
      * @param event Mouse event.
      */
     open(event: MouseEvent) {
-        const contextShowTransitionMs = 300;
-        this.context.style.transition = "none";
+        const transitionDurationMs = 300;
+        const contextStyle = this.context.style;
+        contextStyle.transition = "none";
 
         if (event.screenY < window.innerHeight / 2) {
-            this.context.style.bottom = "auto";
-            this.context.style.top = `${event.pageY}px`;
+            contextStyle.bottom = "auto";
+            contextStyle.top = `${event.pageY}px`;
         } else {
-            this.context.style.top = "auto";
-            this.context.style.bottom = `${window.innerHeight - event.pageY}px`;
+            contextStyle.top = "auto";
+            contextStyle.bottom = `${window.innerHeight - event.pageY}px`;
         }
 
         if (event.screenX < window.innerWidth / 2) {
-            this.context.style.right = "auto";
-            this.context.style.left = `${event.pageX}px`;
+            contextStyle.right = "auto";
+            contextStyle.left = `${event.pageX}px`;
         } else {
-            this.context.style.left = "auto";
-            this.context.style.right = `${window.innerWidth - event.pageX}px`;
+            contextStyle.left = "auto";
+            contextStyle.right = `${window.innerWidth - event.pageX}px`;
         }
 
-        this.context.style.display = "block";
+        contextStyle.display = "block";
 
         const contextHeight = window.getComputedStyle(this.context).getPropertyValue("height");
-        this.context.style.height = "0";
-        this.context.style.transition = `${contextShowTransitionMs}ms`;
+        contextStyle.height = "0px";
+        contextStyle.transition = `${transitionDurationMs}ms`;
 
+        // Wait for new transition duration value to be applied.
         setTimeout(() => {
-            this.context.style.height = `${contextHeight}`;
+            contextStyle.height = `${contextHeight}`;
 
             setTimeout(() => {
-                this.context.style.height = "auto";
-            }, contextShowTransitionMs);
+                contextStyle.height = "auto";
+            }, transitionDurationMs);
         }, 1);
 
         this.isVisible = true;
@@ -284,7 +305,6 @@ class Context {
      */
     close() {
         this.context.style.display = "none";
-
         this.resetAllHoverStatus();
         this.isVisible = false;
     }
@@ -296,34 +316,36 @@ class Context {
     private watchKeydown(keyEvent: KeyboardEvent) {
         if (this.isVisible === false) return;
 
-        const currentSelectedItem: HTMLElement =
-            this.context.querySelector(".context-item.hover") || this.context.querySelector(".context-item")!;
-        const numberOfItems = this.context.querySelectorAll(".context-item").length;
-        const hoveredItemIndex = this.hoveredItemIndex();
-
         switch (keyEvent.key) {
             case "Escape":
-                const div = document.createElement("div");
-                div.style.display = "none";
-                document.body.appendChild(div);
-                div.click();
-                div.remove();
+                this.close();
                 break;
 
             case "ArrowDown":
-                if (hoveredItemIndex === null) this.hover(0);
-                else this.hover(hoveredItemIndex + 1 < numberOfItems ? hoveredItemIndex + 1 : 0);
-
+                if (this.hoveredItemIndex !== null) {
+                    this.hoveredItemIndex++;
+                }
+                if (this.hoveredItemIndex === this.allItems.length) {
+                    this.hoveredItemIndex = 0;
+                }
+                this.hover();
                 break;
 
             case "ArrowUp":
-                if (hoveredItemIndex === null) this.hover(numberOfItems - 1);
-                else this.hover(hoveredItemIndex - 1 >= 0 ? hoveredItemIndex - 1 : numberOfItems - 1);
-
+                const indexOfLastItem = this.allItems.length - 1;
+                if (this.hoveredItemIndex === null) {
+                    this.hoveredItemIndex = indexOfLastItem;
+                } else {
+                    this.hoveredItemIndex--;
+                    if (this.hoveredItemIndex < 0) {
+                        this.hoveredItemIndex = indexOfLastItem;
+                    }
+                }
+                this.hover();
                 break;
 
             case "Enter":
-                currentSelectedItem.click();
+                this.allItems[this.hoveredItemIndex || 0].click();
                 break;
         }
 
@@ -334,39 +356,20 @@ class Context {
      * Remove the hover state of all items.
      */
     private resetAllHoverStatus() {
-        this.context.querySelectorAll(".context-item.hover").forEach((element) => {
+        this.context.querySelectorAll(`.${this.CLASS_NAMES.ITEM}.hover`).forEach((element) => {
             element.classList.remove("hover");
         });
+        this.hoveredItemIndex = null;
     }
 
     /**
      * Make the specified item to hover.
-     * @param item The target item itself or an index of the item.
+     * @param itemIndex Index of the target item. Default value is {@link hoveredItemIndex} || 0.
      */
-    private hover(item: number | HTMLElement) {
+    private hover(itemIndex: number = this.hoveredItemIndex || 0) {
         this.resetAllHoverStatus();
-
-        if (typeof item == "number") {
-            this.context.querySelectorAll(".context-item").item(item).classList.add("hover");
-        } else if (typeof item === "object") {
-            item.classList.add("hover");
-        }
-    }
-
-    /**
-     * Get the index of hovered item.
-     * @returns The index of hovered item.
-     */
-    private hoveredItemIndex() {
-        const hoveredItem = this.context.querySelector(".context-item.hover");
-        const contextItems = this.context.querySelectorAll(".context-item");
-        if (!hoveredItem) {
-            return null;
-        }
-        for (let i = 0; i < contextItems.length; i++) {
-            if (hoveredItem === contextItems[i]) return i;
-        }
-        return null;
+        this.allItems[itemIndex].classList.add("hover");
+        this.hoveredItemIndex = itemIndex;
     }
 }
 
