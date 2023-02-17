@@ -1,5 +1,5 @@
 /*!
- * modernContext.js v1.1.0
+ * modernContext.js v2.0.0
  *
  * Copyright (c) 2023 Robot-Inventor
  *

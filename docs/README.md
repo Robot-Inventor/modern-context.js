@@ -1,6 +1,6 @@
-modernContext.js - v1.1.0
+modernContext.js - v2.0.0
 
-# modernContext.js - v1.1.0
+# modernContext.js - v2.0.0
 
 ## Table of contents
 
@@ -27,4 +27,4 @@ Type of context menu contents.
 
 #### Defined in
 
-[modern-context.ts:26](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L26)
+[modern-context.ts:26](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L26)

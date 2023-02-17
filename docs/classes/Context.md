@@ -1,4 +1,4 @@
-[modernContext.js - v1.1.0](../README.md) / Context
+[modernContext.js - v2.0.0](../README.md) / Context
 
 # Class: Context
 
@@ -58,7 +58,7 @@ const context = new Context("#target", contents);
 
 #### Defined in
 
-[modern-context.ts:66](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L66)
+[modern-context.ts:66](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L66)
 
 ## Methods
 
@@ -103,7 +103,7 @@ context.addContents(contents);
 
 #### Defined in
 
-[modern-context.ts:248](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L248)
+[modern-context.ts:248](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L248)
 
 ___
 
@@ -136,7 +136,7 @@ context.addItem("No Callback");
 
 #### Defined in
 
-[modern-context.ts:187](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L187)
+[modern-context.ts:187](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L187)
 
 ___
 
@@ -162,7 +162,7 @@ context.addItem("ItemB");
 
 #### Defined in
 
-[modern-context.ts:221](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L221)
+[modern-context.ts:221](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L221)
 
 ___
 
@@ -178,7 +178,7 @@ Force the context menu to close without user interaction.
 
 #### Defined in
 
-[modern-context.ts:304](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L304)
+[modern-context.ts:304](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L304)
 
 ___
 
@@ -200,4 +200,4 @@ Force the context menu to open without user interaction.
 
 #### Defined in
 
-[modern-context.ts:262](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L262)
+[modern-context.ts:262](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L262)

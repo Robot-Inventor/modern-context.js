@@ -1,4 +1,4 @@
-[modernContext.js - v1.1.0](../README.md) / McSeparator
+[modernContext.js - v2.0.0](../README.md) / McSeparator
 
 # Interface: McSeparator
 
@@ -18,4 +18,4 @@ Type of context menu separator.
 
 #### Defined in
 
-[modern-context.ts:20](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L20)
+[modern-context.ts:20](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L20)

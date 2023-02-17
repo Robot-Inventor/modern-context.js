@@ -1,4 +1,4 @@
-[modernContext.js - v1.1.0](../README.md) / McItem
+[modernContext.js - v2.0.0](../README.md) / McItem
 
 # Interface: McItem
 
@@ -22,7 +22,7 @@ Callback function to be called when the item is clicked.
 
 #### Defined in
 
-[modern-context.ts:13](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L13)
+[modern-context.ts:13](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L13)
 
 ___
 
@@ -34,7 +34,7 @@ Label text shown in the context menu.
 
 #### Defined in
 
-[modern-context.ts:9](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L9)
+[modern-context.ts:9](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L9)
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 #### Defined in
 
-[modern-context.ts:5](https://github.com/Robot-Inventor/modern-context.js/blob/6ae4d03/src/modern-context.ts#L5)
+[modern-context.ts:5](https://github.com/Robot-Inventor/modern-context.js/blob/4ac740e/src/modern-context.ts#L5)

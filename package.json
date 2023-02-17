@@ -1,6 +1,6 @@
 {
   "name": "modern-context",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A modern, beautiful, and lightweight context menu JavaScript library inspired by Fluent Design.",
   "main": "dist/modern-context.js",
   "scripts": {
