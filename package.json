@@ -5,7 +5,7 @@
   "main": "dist/modern-context.js",
   "scripts": {
     "build": "tsc",
-    "postbuild": "uglifyjs ./dist/modern-context.js --output ./dist/modern-context.min.js && bannerize dist/modern-context.js --banner=script/licenseComment.ejs && bannerize dist/modern-context.min.js --banner=script/licenseCommentShort.ejs",
+    "postbuild": "uglifyjs ./dist/modern-context.js --output ./dist/modern-context.min.js && bannerize dist/modern-context.js dist/modern-context.d.ts --banner=script/licenseComment.ejs && bannerize dist/modern-context.min.js --banner=script/licenseCommentShort.ejs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "doc": "typedoc --plugin typedoc-plugin-markdown --cleanOutputDir --excludePrivate --includeVersion --readme none --name \"modernContext.js\" \"src/modern-context.ts\"",
     "version": "npm run doc",
