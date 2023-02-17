@@ -2,14 +2,32 @@
   "name": "modern-context",
   "version": "1.1.0",
   "description": "A modern, beautiful, and lightweight context menu JavaScript library inspired by Fluent Design.",
-  "main": "modern_context.js",
+  "main": "dist/modern-context.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "postbuild": "uglifyjs ./dist/modern-context.js --output ./dist/modern-context.min.js && bannerize dist/modern-context.js dist/modern-context.d.ts --banner=script/licenseComment.ejs && bannerize dist/modern-context.min.js --banner=script/licenseCommentShort.ejs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "typedoc --plugin typedoc-plugin-markdown --cleanOutputDir --excludePrivate --includeVersion --readme none --name \"modernContext.js\" \"src/modern-context.ts\"",
+    "version": "npm run doc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Robot-Inventor/modern-context.js.git"
   },
+  "keywords": [
+    "contextmenu",
+    "context-menu",
+    "context menu",
+    "context",
+    "menu",
+    "rightclick",
+    "right-click"
+  ],
+  "files": [
+    "dist"
+  ],
+  "types": "dist/modern-context.d.ts",
   "author": "Robot-Inventor",
   "license": "MIT",
   "bugs": {
@@ -17,6 +35,10 @@
   },
   "homepage": "https://github.com/Robot-Inventor/modern-context.js#readme",
   "devDependencies": {
-    "typescript": "4.9.5"
+    "bannerize": "^1.1.4",
+    "typedoc": "^0.23.25",
+    "typedoc-plugin-markdown": "^3.14.0",
+    "typescript": "4.9.5",
+    "uglify-js": "^3.17.4"
   }
 }

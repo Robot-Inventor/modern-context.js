@@ -1,0 +1,30 @@
+html,
+body {
+    background: #eaf4ff;
+    font-family: sans-serif;
+}
+
+#target {
+    background: white;
+    font-size: 2rem;
+    width: min(50vmin, 15em);
+    height: min(50vmin, 15em);
+    border-radius: 0.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --mc-background-color: rgba(255, 255, 255, 0.7);
+        --mc-text-color: black;
+    }
+}
