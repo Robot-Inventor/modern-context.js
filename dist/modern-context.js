@@ -1,3 +1,11 @@
+/*!
+ * modernContext.js v1.1.0
+ *
+ * Copyright (c) 2023 Robot-Inventor
+ *
+ * Released under the MIT License.
+ * See the LICENSE file in the root directory.
+ */
 /**
  * Create and control the context menu.
  */
