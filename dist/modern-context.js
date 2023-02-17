@@ -57,7 +57,7 @@ class Context {
     background: var(--background-color);
     position: absolute;
     border-radius: var(--corner-radius);
-    box-shadow: 0.1em 0.1em 0.75em rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0.25em 0.25em 0.5em rgba(0, 0, 0, 0.2));
     padding: 0.5em 0;
     display: none;
     overflow: hidden;
