@@ -55,12 +55,12 @@ const context = new Context("#target", contents);
 
 ### CSS Custom Properties
 
-| Property           | Default                                                               | Description                             |
-| :----------------- | :-------------------------------------------------------------------- | :-------------------------------------- |
-| --text-color       | ``#333333`` (``white`` in dark mode)                                  | Text color in the context menu.         |
-| --background-color | ``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode) | Background color of the context menu.   |
-| --corner-radius    | ``0.25em``                                                            | Corner radius size of the context menu. |
-| --font-family      | ``sans-serif``                                                        | Font family of text.                    |
+| Property              | Default                                                               | Description                             |
+| :-------------------- | :-------------------------------------------------------------------- | :-------------------------------------- |
+| --mc-text-color       | ``#333333`` (``white`` in dark mode)                                  | Text color in the context menu.         |
+| --mc-background-color | ``rgba(255, 255, 255, 0.7)`` (``rgba(51, 51, 51, 0.7)`` in dark mode) | Background color of the context menu.   |
+| --mc-corner-radius    | ``0.25em``                                                            | Corner radius size of the context menu. |
+| --mc-font-family      | ``sans-serif``                                                        | Font family of text.                    |
 
 ## Supported Browsers
 

@@ -40,23 +40,23 @@ class Context {
         const style = document.createElement("style");
         style.textContent = `
 :root {
-    --text-color: #333333;
-    --background-color: rgba(255, 255, 255, 0.7);
-    --corner-radius: 0.25em;
-    --font-family: sans-serif;
+    --mc-text-color: #333333;
+    --mc-background-color: rgba(255, 255, 255, 0.7);
+    --mc-corner-radius: 0.25em;
+    --mc-font-family: sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: white;
-        --background-color: rgba(51, 51, 51, 0.7);
+        --mc-text-color: white;
+        --mc-background-color: rgba(51, 51, 51, 0.7);
     }
 }
 
 .modern-context-js-outer {
-    background: var(--background-color);
+    background: var(--mc-background-color);
     position: absolute;
-    border-radius: var(--corner-radius);
+    border-radius: var(--mc-corner-radius);
     filter: drop-shadow(0.25em 0.25em 0.5em rgba(0, 0, 0, 0.2));
     padding: 0.5em 0;
     display: none;
@@ -65,13 +65,13 @@ class Context {
     cursor: default;
     user-select: none;
     backdrop-filter: blur(0.25em);
-    font-family: var(--font-family);
+    font-family: var(--mc-font-family);
 }
 
 .modern-context-js-outer hr {
     width: calc(100% - 2em);
     height: 0.1em;
-    background: var(--text-color);
+    background: var(--mc-text-color);
     border: none;
     margin: 0.25em 1em;
     opacity: 0.5;
@@ -80,7 +80,7 @@ class Context {
 .modern-context-js-outer .context-item {
     width: 100%;
     padding: 0.5em 1em;
-    color: var(--text-color);
+    color: var(--mc-text-color);
     box-sizing: border-box;
     position: relative;
 }
@@ -94,7 +94,7 @@ class Context {
     position: absolute;
     top: 0;
     left: 0;
-    background: var(--text-color);
+    background: var(--mc-text-color);
     opacity: 0;
 }
 
