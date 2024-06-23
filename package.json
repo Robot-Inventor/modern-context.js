@@ -36,7 +36,7 @@
   "homepage": "https://github.com/Robot-Inventor/modern-context.js#readme",
   "devDependencies": {
     "bannerize": "^1.1.4",
-    "typedoc": "^0.25.0",
+    "typedoc": "^0.26.0",
     "typedoc-plugin-markdown": "^4.0.0",
     "typescript": "5.4.5",
     "uglify-js": "^3.17.4"
